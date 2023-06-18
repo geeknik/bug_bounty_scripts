@@ -1,2 +1,2 @@
-# bug_bounty_scripts
-scripts made for bug bounty hunting and other tasks as necessary.
+# Bug Bounty Scripts
+Making the hunt for bugs just a little bit easier
