@@ -6,8 +6,14 @@ import requests
 from bs4 import BeautifulSoup
 
 def get_urls(website):
-    # Make the request and parse the response.
-    response = requests.get(website)
+    try:
+        # Make the request with a user agent.
+        response = requests.get(website, headers={'User-Agent': 'Mozilla/5.0'})
+        response.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        print(f"Error: {e}")
+        sys.exit(1)
+
     soup = BeautifulSoup(response.text, 'html.parser')
     # Extract all of the URLs to JavaScript files.
     urls = []
@@ -26,8 +32,11 @@ def main():
     # Get the URLs to JavaScript files.
     urls = get_urls(website)
     # Print the URLs to the user.
-    for url in urls:
-        print(url)
+    if not urls:
+        print("No JavaScript files found.")
+    else:
+        for url in urls:
+            print(url)
 
 # Invoke the main function.
 if __name__ == '__main__':
