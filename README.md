@@ -17,6 +17,51 @@ The script then uses the `BeautifulSoup` library to parse the HTML content and e
 
 The script includes error handling for requests that fail or raise an exception, and it prints an error message if an invalid URL is entered. It also includes a user agent in the request to avoid being blocked by certain websites. If no JavaScript files are found on the website, the script prints a message to the user.
 
+Firebase Scanner (firebase-scanner.py)
+--------------------------------
+![image](https://github.com/geeknik/bug_bounty_scripts/assets/466878/84548548-612c-4801-b89c-569e2e13a504)
+
+The Firebase Scanner script is a Python command-line tool that crawls a list of URLs whilst simultaenously scanning for patterns consistent with Firebase configuration options. For example:
+```python
+patterns = [
+        # Handle variables defined with var, let, const, and no keyword
+        r'(?:var|let|const|\s)apiKey\s*=\s*([\'"\`].*?[\'"\`])',
+		r'(?:var|let|const|\s)authDomain\s*=\s*([\'"\`].*?[\'"\`])',
+		r'(?:var|let|const|\s)databaseURL\s*=\s*([\'"\`].*?[\'"\`])',
+		r'(?:var|let|const|\s)projectId\s*=\s*([\'"\`].*?[\'"\`])',
+		r'(?:var|let|const|\s)storageBucket\s*=\s*([\'"\`].*?[\'"\`])',
+		r'(?:var|let|const|\s)messagingSenderId\s*=\s*([\'"\`].*?[\'"\`])',
+		r'(?:var|let|const|\s)appId\s*=\s*([\'"\`].*?[\'"\`])',
+		r'(?:var|let|const|\s)measurementId\s*=\s*([\'"\`].*?[\'"\`])',
+		# Handle objects defined with curly braces and new keyword
+		r'(?:new\s+FirebaseConfig|\{)\s*apiKey\s*:\s*([\'"\`].*?[\'"\`])',
+		r'(?:new\s+FirebaseConfig|\{)\s*authDomain\s*:\s*([\'"\`].*?[\'"\`])',
+		r'(?:new\s+FirebaseConfig|\{)\s*databaseURL\s*:\s*([\'"\`].*?[\'"\`])',
+		r'(?:new\s+FirebaseConfig|\{)\s*projectId\s*:\s*([\'"\`].*?[\'"\`])',
+		r'(?:new\s+FirebaseConfig|\{)\s*storageBucket\s*:\s*([\'"\`].*?[\'"\`])',
+		r'(?:new\s+FirebaseConfig|\{)\s*messagingSenderId\s*:\s*([\'"\`].*?[\'"\`])',
+		r'(?:new\s+FirebaseConfig|\{)\s*appId\s*:\s*([\'"\`].*?[\'"\`])',
+		r'(?:new\s+FirebaseConfig|\{)\s*measurementId\s*:\s*([\'"\`].*?[\'"\`])',
+		# Handle comments
+		r'/\*[\s\S]*?apiKey\s*:\s*([\'"\`].*?[\'"\`])[\s\S]*?\*/',
+		r'//.*?apiKey\s*:\s*([\'"\`].*?[\'"\`])',
+		r'/\*[\s\S]*?authDomain\s*:\s*([\'"\`].*?[\'"\`])[\s\S]*?\*/',
+		r'//.*?authDomain\s*:\s*([\'"\`].*?[\'"\`])',
+		r'/\*[\s\S]*?databaseURL\s*:\s*([\'"\`].*?[\'"\`])[\s\S]*?\*/',
+		r'//.*?databaseURL\s*:\s*([\'"\`].*?[\'"\`])',
+		r'/\*[\s\S]*?projectId\s*:\s*([\'"\`].*?[\'"\`])[\s\S]*?\*/',
+		r'//.*?projectId\s*:\s*([\'"\`].*?[\'"\`])',
+		r'/\*[\s\S]*?storageBucket\s*:\s*([\'"\`].*?[\'"\`])[\s\S]*?\*/',
+		r'//.*?storageBucket\s*:\s*([\'"\`].*?[\'"\`])',
+		r'/\*[\s\S]*?messagingSenderId\s*:\s*([\'"\`].*?[\'"\`])[\s\S]*?\*/',
+		r'//.*?messagingSenderId\s*:\s*([\'"\`].*?[\'"\`])',
+		r'/\*[\s\S]*?appId\s*:\s*([\'"\`].*?[\'"\`])[\s\S]*?\*/',
+		r'//.*?appId\s*:\s*([\'"\`].*?[\'"\`])',
+		r'/\*[\s\S]*?measurementId\s*:\s*([\'"\`].*?[\'"\`])[\s\S]*?\*/',
+		r'//.*?measurementId\s*:\s*([\'"\`].*?[\'"\`])',
+	]
+```
+
 Pull Requests
 --------------------------------
 - Find a bug?
