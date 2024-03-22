@@ -3,7 +3,7 @@ Making the hunt for bugs just a little bit easier
 
 
 IP Range Generator (print_full_ip_range.py)
-----------------------------
+--------------------------------
 The IP Range Generator script is a Python command-line tool that generates a list of IP addresses within a specified range. The user is prompted to enter a starting IP address and an ending IP address, and the script generates all the IP addresses in between.
 
 The script validates the input to ensure that the IP addresses are in the correct format and generates an error message if an invalid IP address is entered. It then iterates over the range of IP addresses and prints each one to the console.
@@ -16,6 +16,13 @@ The JavaScript File Finder script is a Python command-line tool that extracts UR
 The script then uses the `BeautifulSoup` library to parse the HTML content and extract the URLs of all JavaScript files found on the website. It prints each URL to the console.
 
 The script includes error handling for requests that fail or raise an exception, and it prints an error message if an invalid URL is entered. It also includes a user agent in the request to avoid being blocked by certain websites. If no JavaScript files are found on the website, the script prints a message to the user.
+
+Pull Requests
+--------------------------------
+- Find a bug?
+  - Submit a pull request! 
+- Want to add a feature?
+  - Submit a pull request!
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/S6S1MHNPY) 
 
